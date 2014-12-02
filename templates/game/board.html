@@ -1,0 +1,74 @@
+<div class="panel-heading">
+    <h1>Minesweeper</h1>
+</div>
+
+<div class="panel-body">
+
+    <div class="alert center"
+         ng-show="ctrl.game.status.finished===true"
+         ng-class="ctrl.game.status.message.cssClass">
+        {{ctrl.game.status.message.description}}
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 game-board">
+            <table>
+                <tr ng-repeat="row in ctrl.game.board.rows">
+                    <td ng-repeat="field in row.fields">
+                        <div class="field center"
+                             ng-click="ctrl.uncoverField(field)"
+                             ng-class="{
+                                   'uncovered' : field.discovered,
+                                   'mine' : field.mined,
+                                   'cheated' : field.mineCheated,
+                                   'finished' : ctrl.game.status.finished,
+                                   }">
+                            {{field.minesAround}}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-12 btn-action center">
+            <input type="button" class="btn btn-primary" value="New game"
+                   ng-click="ctrl.newGame()">
+
+            <input type="button" value="Validate game" class="btn btn-success"
+                   ng-click="ctrl.validateGame()"
+                   ng-disabled="ctrl.game.status.finished">
+
+            <input type="button" class="btn btn-warning"
+                   ng-click="ctrl.cheatGame()"
+                   ng-disabled="ctrl.game.status.finished"
+                   ng-value="ctrl.game.cheated ? 'Uncheat this game!' : 'Cheat this game!'">
+
+        </div>
+    </div>
+</div>
+
+<div class="panel-footer">
+    <h3>Board configuration</h3>
+    <form role="form">
+        <div class="row">
+            <div class="col-xs-4 form-group">
+                <label>Rows</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="ctrl.game.configuration.totalRows">
+            </div>
+            <div class="col-xs-4 form-group">
+                <label>Columns</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="ctrl.game.configuration.totalColumns">
+            </div>
+            <div class="col-xs-4 form-group">
+                <label>Mines</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="ctrl.game.configuration.totalMines">
+            </div>
+        </div>
+    </form>
+</div>
