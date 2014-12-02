@@ -2,7 +2,9 @@ Minesweeper
 ===========
 The famous minesweeper game built with AngularJS and Bootstrap
 
-The game start with an 8x8 grid and 10 hidden mines by default, randomly placed into the board.
+<p>The game start with an 8x8 grid and 10 hidden mines by default, randomly placed into the board.</p>
+
+<p><b>In progress:</b> implementation of webworker to support the generation of the board and don't get a browser message to stop the script in cases when the user set a large board grid in configuration section. A loading message while the board is getting built will be implemented as well.</p>
 
 <h4>Additional functions</h4>
 <ul>
